@@ -74,7 +74,7 @@ void ofApp::setMode(int mode){
             break;
         case 4: // full art on vertical screen
             camCropper.setTarget(-1, -1, 1, 1); // hide cam
-            artCropper.setTarget(ofGetWidth()/4, 0, ofGetWidth()/2, ofGetHeight());
+            artCropper.setTarget(0, 0, ofGetWidth()/2, ofGetHeight());
             artCropper.setSource(cam.width/4, 0, cam.width/2, cam.height);
         default:
             break;

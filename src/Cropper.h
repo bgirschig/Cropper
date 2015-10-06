@@ -61,20 +61,21 @@ public:
         BOTTOM_CENTER,
         BOTTOM_RIGHT
     };
-    AlignMode alignMode;
-    
     
     // getters & setters
     ofRectangle* getTarget();
     ofRectangle* getSource();
     void setFitMode(FitMode mode);
     FitMode getFitMode();
+    void setAlignMode(AlignMode mode);
+    AlignMode getAlignMode();
     
 private:
     ofFbo::Settings canvasSettings;
     ofRectangle source;
     ofRectangle target;
     FitMode fitMode;
+    AlignMode alignMode;
     
     void drawDebug(int part);
 };

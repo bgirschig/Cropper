@@ -148,6 +148,9 @@ ofRectangle* Cropper::getTarget() { return &target; }
 void Cropper::setFitMode(FitMode mode) { fitMode = mode; }
 Cropper::FitMode Cropper::getFitMode() { return fitMode; }
 
+void Cropper::setAlignMode(AlignMode mode){ alignMode = mode; }
+Cropper::AlignMode Cropper::getAlignMode(){ return alignMode; }
+
 // target handlers
 void Cropper::setTarget(float x, float y, float w, float h) {
     target.set(x, y, w, h);
