@@ -152,6 +152,9 @@ void Cropper::setAlignMode(AlignMode mode){ alignMode = mode; }
 Cropper::AlignMode Cropper::getAlignMode(){ return alignMode; }
 
 // target handlers
+void Cropper::setTarget(ofRectangle _target){
+  target.set(_target);
+}
 void Cropper::setTarget(float x, float y, float w, float h) {
     target.set(x, y, w, h);
 }
@@ -164,6 +167,9 @@ void Cropper::setTargetPos(float x, float y) {
 }
 
 // source handlers
+void Cropper::setSource(ofRectangle _source){
+  source.set(_source);
+}
 void Cropper::setSource(float x, float y, float w, float h) {
     source.set(x, y, w, h);
 }

@@ -27,11 +27,13 @@ public:
     void set(float sx, float sy, float sw, float sh, float tx, float ty, float tw, float th);
     
     // target handlers
+    void setTarget(ofRectangle _target);
     void setTarget(float x, float y, float w, float h);
     void setTargetShape(float w, float h);
     void setTargetPos(float x, float y);
     
     // source handlers
+    void setSource(ofRectangle _source);
     void setSource(float x, float y, float w, float h);
     void setSourceShape(float w, float h);
     void setSourcePos(float x, float y);
@@ -70,7 +72,7 @@ public:
     void setAlignMode(AlignMode mode);
     AlignMode getAlignMode();
     
-private:
+protected:
     ofFbo::Settings canvasSettings;
     ofRectangle source;
     ofRectangle target;
