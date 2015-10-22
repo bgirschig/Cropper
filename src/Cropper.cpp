@@ -108,9 +108,9 @@ void Cropper::drawDebug(int part) {
     if (part == 0) { // to be drawn using the cropper's transformation
         // mark cropper's boundaries and diagonals
         ofSetColor(0, 0, 255); ofNoFill();
-        ofRect(0, 0, source.width, source.height);
-        ofLine(0, 0, source.width, source.height);
-        ofLine(0, source.height, source.width, 0);
+        ofDrawRectangle(0, 0, source.width, source.height);
+        ofDrawLine(0, 0, source.width, source.height);
+        ofDrawLine(0, source.height, source.width, 0);
     }
     else if (part == 1) { // to be drawn without the cropper's transformations
         string debugInfo;
@@ -127,15 +127,15 @@ void Cropper::drawDebug(int part) {
         debugInfo += "cropper shape: " + ofToString(target.width) + ", " + ofToString(target.height);
         
         // fill cropper area with translucent color
-        ofSetColor(255, 0, 0, 20); ofFill(); ofRect(0, 0, target.width, target.height);
+        ofSetColor(255, 0, 0, 20); ofFill(); ofDrawRectangle(0, 0, target.width, target.height);
         // mark cropper's boundaries and diagonals
         ofSetColor(255, 0, 0); ofNoFill();
-        ofRect(0, 0, target.width, target.height);
-        ofLine(0, 0, target.width, target.height);
-        ofLine(0, target.height, target.width, 0);
+        ofDrawRectangle(0, 0, target.width, target.height);
+        ofDrawLine(0, 0, target.width, target.height);
+        ofDrawLine(0, target.height, target.width, 0);
         
         // debug text background
-        ofFill(); ofSetColor(255, 255, 255, 180); ofRect(0, 0, 250, 130);
+        ofFill(); ofSetColor(255, 255, 255, 180); ofDrawRectangle(0, 0, 250, 130);
         // debug text
         ofSetColor(0); ofDrawBitmapString(debugInfo, ofPoint(10, 18));
     }
