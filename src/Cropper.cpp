@@ -12,6 +12,8 @@ Cropper::Cropper() {
     // default settings
     canvasSettings.width = 100;
     canvasSettings.height = 100;
+    canvasSettings.internalformat = GL_RGBA16F;
+
     setSource(0, 0, 100, 100);
     setTarget(0, 0, 100, 100);
     
