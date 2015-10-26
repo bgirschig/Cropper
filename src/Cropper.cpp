@@ -110,9 +110,31 @@ void Cropper::drawDebug(int part) {
     if (part == 0) { // to be drawn using the cropper's transformation
         // mark cropper's boundaries and diagonals
         ofSetColor(0, 0, 255); ofNoFill();
-        ofDrawRectangle(0, 0, source.width, source.height);
-        ofDrawLine(0, 0, source.width, source.height);
-        ofDrawLine(0, source.height, source.width, 0);
+        ofDrawLine(source.x, source.y, source.x+source.width, source.y+source.height);
+        ofDrawLine(source.x, source.y+source.height, source.x+source.width, source.y);
+        
+        int resolution = 60;
+        int opacity = 150;
+        ofFill();
+        ofPushMatrix();
+//        ofTranslate(source.x, source.y);
+        for(int j=0;j<source.height/resolution;j++){
+            ofPushMatrix();
+            for(int i=0;i<source.width/resolution;i++){
+                int col = 255*((i+j)%2);
+                
+                ofSetColor(col, opacity);
+                ofDrawRectangle(0, 0, resolution, resolution);
+
+                ofSetColor(255-col, opacity);
+                ofDrawBitmapString("x:"+ofToString(i*resolution)+"\ny:"+ofToString(j*resolution), 5, 12);
+                
+                ofTranslate(resolution, 0);
+            }
+            ofPopMatrix();
+            ofTranslate(0, resolution);
+        }
+        ofPopMatrix();
     }
     else if (part == 1) { // to be drawn without the cropper's transformations
         string debugInfo;
