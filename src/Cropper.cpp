@@ -110,9 +110,26 @@ void Cropper::drawDebug(int part) {
     if (part == 0) { // to be drawn using the cropper's transformation
         // mark cropper's boundaries and diagonals
         ofSetColor(0, 0, 255); ofNoFill();
-        ofDrawRectangle(0, 0, source.width, source.height);
-        ofDrawLine(0, 0, source.width, source.height);
-        ofDrawLine(0, source.height, source.width, 0);
+        ofDrawLine(source.x, source.y, source.x+source.width, source.y+source.height);
+        ofDrawLine(source.x, source.y+source.height, source.x+source.width, source.y);
+        
+        
+        // draw grid
+        int resolution = 50;
+        int opacity = 100;
+        ofFill(); ofPushMatrix();
+        for(int j=source.x/resolution; j<(source.height/resolution)+source.x/resolution; j++){
+            for(int i=source.x/resolution; i<(source.width/resolution)+source.x/resolution; i++){
+                int col = 255*abs((i+j)%2);
+                
+                ofSetColor(col, opacity);
+                ofDrawRectangle(i*resolution, j*resolution, resolution, resolution);
+
+                ofSetColor(255-col, opacity);
+                ofDrawBitmapString("x:"+ofToString(i*resolution)+"\ny:"+ofToString(j*resolution), i*resolution+5, j*resolution+12);
+            }
+        }
+        ofPopMatrix();
     }
     else if (part == 1) { // to be drawn without the cropper's transformations
         string debugInfo;
@@ -128,18 +145,22 @@ void Cropper::drawDebug(int part) {
         debugInfo += "cropper position: " + ofToString(target.x) + ", " + ofToString(target.y) + "\n";
         debugInfo += "cropper shape: " + ofToString(target.width) + ", " + ofToString(target.height);
         
-        // fill cropper area with translucent color
-        ofSetColor(255, 0, 0, 20); ofFill(); ofDrawRectangle(0, 0, target.width, target.height);
         // mark cropper's boundaries and diagonals
+        if(!crop){
+            ofPushMatrix();
+            ofTranslate(target.x, target.y);
+        }
         ofSetColor(255, 0, 0); ofNoFill();
         ofDrawRectangle(0, 0, target.width, target.height);
         ofDrawLine(0, 0, target.width, target.height);
         ofDrawLine(0, target.height, target.width, 0);
         
         // debug text background
-        ofFill(); ofSetColor(255, 255, 255, 180); ofDrawRectangle(0, 0, 250, 130);
+        ofFill(); ofSetColor(255, 255, 255, 50); ofDrawRectangle(0, 0, 250, 130);
         // debug text
         ofSetColor(0); ofDrawBitmapString(debugInfo, ofPoint(10, 18));
+        
+        if(!crop) ofPopMatrix();
     }
     ofPopStyle();
 }
