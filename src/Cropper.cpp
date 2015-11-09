@@ -41,7 +41,7 @@ void Cropper::begin() {
     if (crop) canvas.begin();
     ofPushMatrix();
     if (!crop) ofTranslate(target.x, target.y);
-    if(autoClear) ofClear(255, 255, 255);
+    if(autoClear) ofClear(0, 0, 0);
     
     // go to the origin (depending on alignMode)
     if(     alignMode == TOP_LEFT)      ofTranslate(0,                  0);
